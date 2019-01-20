@@ -11,7 +11,7 @@ import rosegraphics as rg
 
 def main():
     """ Calls the other functions to demonstrate them. """
-    run_test_draw_L()
+    #run_test_draw_L()
     run_test_draw_wall_on_right()
 
 
@@ -79,10 +79,29 @@ def draw_L(window, circle, r, c):
       :type c: int
     and m and n are small, positive integers.
     """
+    y=circle.center.y
     for k in range(r):
-        
+        x = circle.center.x
+        for j in range(3):
+            circle1=rg.Circle(rg.Point(x,y),circle.radius)
+            circle1.fill_color=circle.fill_color
+            circle1.attach_to(window)
+            window.render(.1)
+            x=x+circle.radius*2
+        y=y+circle.radius*2
+    x=circle.center.x
+    x = x + circle.radius * 6
+    for n in range(c):
+        y=y-circle.radius*6
+        for m in range(3):
+            circle2=rg.Circle(rg.Point(x,y),circle.radius)
+            circle2.fill_color=circle.fill_color
+            circle2.attach_to(window)
+            window.render(.1)
+            y=y+circle.radius*2
+        x=x+circle.radius*2
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
 
@@ -122,6 +141,23 @@ def draw_wall_on_right(rectangle, n, window):
       :type window: rg.RoseWindow
     and n is a small, positive integer.
     """
+    x1=rectangle.corner_1.x
+    x2=rectangle.corner_2.x
+    y1 = rectangle.corner_1.y
+    y2 = rectangle.corner_2.y
+    for k in range(n):
+        height = abs(rectangle.corner_1.y - rectangle.corner_2.y)
+        rectangle.corner_1.y=y1+height*k
+        rectangle.corner_2.y=y2+height*k
+        rectangle.corner_1.x = x1
+        rectangle.corner_2.x = x2
+        for j in range(k+1):
+            rectangle=rg.Rectangle(rectangle.corner_1,rectangle.corner_2)
+            rectangle.attach_to(window)
+            window.render(.1)
+            length = abs(rectangle.corner_1.x - rectangle.corner_2.x)
+            rectangle.corner_2.x = rectangle.corner_2.x -length
+            rectangle.corner_1.x = rectangle.corner_1.x -length
     # ------------------------------------------------------------------
     # TODO: 3. Implement and test this function.
     #     The testing code is already written for you (above).
