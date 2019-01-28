@@ -141,6 +141,8 @@ def draw_wall_on_right(rectangle, n, window):
       :type window: rg.RoseWindow
     and n is a small, positive integer.
     """
+    rect=rg.Rectangle(rectangle.corner_1,rectangle.corner_2)
+    rect.attach_to(window)
     x1=rectangle.corner_1.x
     x2=rectangle.corner_2.x
     y1 = rectangle.corner_1.y
