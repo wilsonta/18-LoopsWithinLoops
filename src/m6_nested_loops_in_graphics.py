@@ -154,14 +154,15 @@ def draw_wall_on_right(rectangle, n, window):
         rectangle.corner_1.x = x1
         rectangle.corner_2.x = x2
         for j in range(k+1):
+            length = abs(rectangle.corner_1.x - rectangle.corner_2.x)
+            rectangle.corner_2.x = x2 -j* length
+            rectangle.corner_1.x = x1 -j* length
             rectangle=rg.Rectangle(rectangle.corner_1,rectangle.corner_2)
             rectangle.attach_to(window)
             window.render(.1)
-            length = abs(rectangle.corner_1.x - rectangle.corner_2.x)
-            rectangle.corner_2.x = rectangle.corner_2.x -length
-            rectangle.corner_1.x = rectangle.corner_1.x -length
+            #length = abs(rectangle.corner_1.x - rectangle.corner_2.x)
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
 
